@@ -29,6 +29,9 @@
         [Computed]
         public IEnumerable<Surfboard> Surfboards { get { return SurfboardsStorage; } }
 
+        [Computed]
+        public string FullName { get { return string.Concat(FirstName, " ", LastName); } }
+
         public void AddSurfboard(string shaperName, int feet, int inches)
         {
             if (SurfboardsStorage.Count >= 5)

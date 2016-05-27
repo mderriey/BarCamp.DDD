@@ -1,5 +1,6 @@
 ﻿namespace BarCamp.DDD
 {
+    using DelegateDecompiler;
     using System;
     using System.Data.Entity;
     using System.Linq;
@@ -15,6 +16,8 @@
                 // Listing all the surfers
                 var people = context
                     .Surfers
+                    .Where(x => x.FullName.Contains("Taj") || x.FullName.Contains("Wilson"))
+                    .Decompile()
                     .ToList();
 
                 people.ForEach(Console.WriteLine);
