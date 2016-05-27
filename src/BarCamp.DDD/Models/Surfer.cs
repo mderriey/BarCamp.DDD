@@ -6,17 +6,41 @@
 
     public class Surfer
     {
-        public Surfer()
+        protected Surfer()
         {
             Surfboards = new HashSet<Surfboard>();
         }
 
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime NameLastModifiedOn { get; set; }
+        public Surfer(string firstName, string lastName)
+            : this()
+        {
+            CreatedOn = DateTime.Now;
+            ChangeName(firstName, lastName);
+        }
+
+        public int Id { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public DateTime CreatedOn { get; private set; }
+        public DateTime NameLastModifiedOn { get; private set; }
         public virtual ICollection<Surfboard> Surfboards { get; private set; }
+
+        public void ChangeName(string firstName, string lastName)
+        {
+            if (string.IsNullOrWhiteSpace(firstName))
+            {
+                throw new ArgumentNullException("The first name cannot be null or empty.");
+            }
+
+            if (string.IsNullOrWhiteSpace(lastName))
+            {
+                throw new ArgumentNullException("The last name cannot be null or empty.");
+            }
+
+            FirstName = firstName;
+            LastName = lastName;
+            NameLastModifiedOn = DateTime.Now;
+        }
 
         public override string ToString()
         {
