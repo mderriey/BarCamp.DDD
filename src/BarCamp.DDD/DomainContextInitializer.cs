@@ -8,16 +8,16 @@
         protected override void Seed(DomainContext context)
         {
             var taj = new Surfer("Taj", "Burrow");
-            taj.Surfboards.Add(new Surfboard("Webber", 5, 11, 0));
-            taj.Surfboards.Add(new Surfboard("Matt Biolos", 6, 2, 0));
+            taj.AddSurfboard("Webber", 5, 11);
+            taj.AddSurfboard("Matt Biolos", 6, 2);
 
             var julian = new Surfer("Julian", "Wilson");
-            julian.Surfboards.Add(new Surfboard("JS", 5, 9, 0));
-            julian.Surfboards.Add(new Surfboard("JS", 5, 10, 0));
+            julian.AddSurfboard("JS", 5, 9);
+            julian.AddSurfboard("JS", 5, 10);
 
             var mick = new Surfer("Mick", "Fanning");
-            mick.Surfboards.Add(new Surfboard("DHD", 6, 0, 0));
-            mick.Surfboards.Add(new Surfboard("DHD", 6, 2, 0));
+            mick.AddSurfboard("DHD", 6, 0);
+            mick.AddSurfboard("DHD", 6, 2);
 
             context.Surfers.AddRange(new[] { taj, julian, mick });
             context.SaveChanges();
