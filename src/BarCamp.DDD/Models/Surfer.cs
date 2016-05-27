@@ -1,5 +1,6 @@
 ﻿namespace BarCamp.DDD.Models
 {
+    using DelegateDecompiler;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -8,7 +9,7 @@
     {
         protected Surfer()
         {
-            Surfboards = new HashSet<Surfboard>();
+            SurfboardsStorage = new HashSet<Surfboard>();
         }
 
         public Surfer(string firstName, string lastName)
@@ -23,16 +24,19 @@
         public string LastName { get; private set; }
         public DateTime CreatedOn { get; private set; }
         public DateTime NameLastModifiedOn { get; private set; }
-        public virtual ICollection<Surfboard> Surfboards { get; private set; }
+        protected virtual ICollection<Surfboard> SurfboardsStorage { get; private set; }
+
+        [Computed]
+        public IEnumerable<Surfboard> Surfboards { get { return SurfboardsStorage; } }
 
         public void AddSurfboard(string shaperName, int feet, int inches)
         {
-            if (Surfboards.Count >= 5)
+            if (SurfboardsStorage.Count >= 5)
             {
                 throw new InvalidOperationException("A surfer cannot have more than 5 surfboards.");
             }
 
-            Surfboards.Add(new Surfboard(shaperName, feet, inches, Id));
+            SurfboardsStorage.Add(new Surfboard(shaperName, feet, inches, Id));
         }
 
         public void ChangeName(string firstName, string lastName)

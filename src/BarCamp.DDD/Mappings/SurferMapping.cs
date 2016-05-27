@@ -27,7 +27,7 @@
             Property(x => x.NameLastModifiedOn)
                 .IsRequired();
 
-            HasMany(x => x.Surfboards)
+            this.HasMany(x => x.Surfboards)
                 .WithRequired()
                 .HasForeignKey(x => x.SurferId);
         }
