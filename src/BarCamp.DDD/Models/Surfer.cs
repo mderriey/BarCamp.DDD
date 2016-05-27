@@ -25,6 +25,16 @@
         public DateTime NameLastModifiedOn { get; private set; }
         public virtual ICollection<Surfboard> Surfboards { get; private set; }
 
+        public void AddSurfboard(string shaperName, int feet, int inches)
+        {
+            if (Surfboards.Count >= 5)
+            {
+                throw new InvalidOperationException("A surfer cannot have more than 5 surfboards.");
+            }
+
+            Surfboards.Add(new Surfboard(shaperName, feet, inches, Id));
+        }
+
         public void ChangeName(string firstName, string lastName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
