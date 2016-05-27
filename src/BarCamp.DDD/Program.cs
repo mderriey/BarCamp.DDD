@@ -16,6 +16,7 @@
                 // Listing all the surfers
                 var people = context
                     .Surfers
+                    .Include(x => x.Surfboards)
                     .Where(x => x.FullName.Contains("Taj") || x.FullName.Contains("Wilson"))
                     .Decompile()
                     .ToList();

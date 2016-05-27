@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="DomainContext.cs" />
     <Compile Include="DomainContextInitializer.cs" />
+    <Compile Include="Extensions\DecompileQueryableExtensions.cs" />
     <Compile Include="Extensions\EntityTypeConfigurationExtensions.cs" />
     <Compile Include="Mappings\SurfboardMapping.cs" />
     <Compile Include="Mappings\SurferMapping.cs" />
