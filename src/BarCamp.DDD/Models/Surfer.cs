@@ -3,6 +3,7 @@
     using DelegateDecompiler;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public class Surfer
@@ -27,7 +28,7 @@
         protected virtual ICollection<Surfboard> SurfboardsStorage { get; private set; }
 
         [Computed]
-        public IEnumerable<Surfboard> Surfboards { get { return SurfboardsStorage; } }
+        public IEnumerable<Surfboard> Surfboards { get { return SurfboardsStorage.Skip(0); } }
 
         [Computed]
         public string FullName { get { return string.Concat(FirstName, " ", LastName); } }

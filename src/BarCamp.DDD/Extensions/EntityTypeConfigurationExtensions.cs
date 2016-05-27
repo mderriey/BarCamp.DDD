@@ -18,8 +18,8 @@
         {
             var body = navigationPropertyExpression.Body;
             var member = (PropertyInfo)((MemberExpression)body).Member;
-            var decompiled = DecompileExpressionVisitor.Decompile(body);
-            var converted = Expression.Convert(decompiled, typeof(ICollection<TTarget>));
+            var decompiled = DecompileExpressionVisitor.Decompile(body) as MethodCallExpression;
+            var converted = Expression.Convert(decompiled.Arguments[0], typeof(ICollection<TTarget>));
             var collectionExpression = Expression.Lambda<Func<T, ICollection<TTarget>>>(converted, navigationPropertyExpression.Parameters);
             return source.HasMany(collectionExpression);
         }
